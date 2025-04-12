@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Industrial - Nova Estrutura</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Monitoramento de Sensores</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4">Dados Atuais</h2>
+                <div class="space-y-3">
+                    <p><span class="font-medium">Umidade:</span> <span id="umidade" class="text-blue-400">--</span> %</p>
+                    <p><span class="font-medium">Tensão:</span> <span id="tensao" class="text-yellow-400">--</span> V</p>
+                    <p><span class="font-medium">Temperatura:</span> <span id="temperatura" class="text-red-400">--</span> °C</p>
+                    <p><span class="font-medium">Presença:</span> <span id="presenca" class="text-purple-400">--</span></p>
+                </div>
+                <div class="mt-4 space-x-2">
+                    <button id="pauseBtn" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Pausar</button>
+                    <button id="resumeBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded hidden">Continuar</button>
+                </div>
+            </div>
+            
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-semibold mb-4" id="status">Status Sistemas</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <span class="mr-2">Banco de Dados:</span>
+                        <span id="dbStatus" class="font-medium">--</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="mr-2">ThingSpeak:</span>
+                        <span id="tsStatus" class="font-medium">--</span>
+                    </div>
+                </div>
+                <a id="tsLink" href="#" target="_blank" class="mt-4 inline-block text-blue-400 hover:underline hidden">Ver no ThingSpeak</a>
+            </div>
+        </div>
+        
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static',filename='script.js')}}"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - sis01 # A rede está corretamente associada
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: dados
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3309:3309" # Mapeamento de porta correto
+    networks:
+      - sis01 # A rede está corretamente associada
+
+volumes:
+  db_data:
+
+networks:
+  sis01: # Definição da rede no nível raiz
+    driver: bridge
